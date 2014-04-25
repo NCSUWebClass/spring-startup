@@ -1,0 +1,207 @@
+@charset "utf-8";
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	font-size: .75em;
+	background: #87EB7B;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+@media screen and (min-device-width:400px) and (max-device-width:1023px) {
+  	/* ~~ CSS code for small screens ~~ */
+	body {
+		background-image:url(images/spring_background.jpg);
+		background-size: contain;
+	}
+}
+@media screen and (min-device-width:1024px) {
+  	/* ~~ CSS code for larger screens ~~ */
+	body {
+		background-image: url(images/spring_bg.jpg);
+		background-size: cover;
+		background-position: center;
+	}
+}
+
+ul, ol, dl { 
+    padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	color: #016;
+	margin-top: 0;	 
+	padding-right: 15px;
+	padding-left: 15px; 
+}
+p {
+	color: #111;
+}
+a img { 
+	border: none;
+}
+
+iframe {
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+}
+
+/* ~~ Styling for links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color:#414958;
+	text-decoration: underline;
+}
+a:visited {
+	color: #4E5869;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { 
+    text-decoration: none;
+}
+
+/* ~~ this container surrounds all other divs giving them their percentage-based width ~~ */
+.container {
+	width: 80%;
+	max-width: 1200px;
+	min-width: 800px;
+	background: #FFF;
+	margin: 0 auto; 
+}
+
+/* ~~ the header ~~ */
+.header {
+	background: #000;
+	margin: -5px 0 -6px 0;
+	padding: 0;
+	background-image:url(images/blinkBanner.gif);
+	background-size: 100% 100%;
+}
+.header a img {
+	width: 20%;
+	height: 20%;
+    margin: 0 0 -4px 0
+}
+.header img {
+	width: 79%;
+	height: 20%;
+	margin: 0 0 -4px -6px;
+}
+
+/* ~~ These are the columns for the layout. ~~ */
+.sidebar1 {
+	float: left;
+	width: 20%;
+	min-height: 600px;
+	background: #93A5C4;
+	padding-bottom: 10px;
+	margin-top: 6px;
+}
+.content {
+	padding: 10px 0;
+	width: 80%;
+	float: left;
+}
+
+/* ~~ This grouped selector gives the lists in the .content area space ~~ */
+.content ul, .content ol { 
+	padding: 0 15px 15px 40px;
+}
+
+/* ~~ The navigation list styles ~~ */
+ul.nav {
+	font-weight: bold; 
+	list-style: none;
+	border-top: 1px solid #666;
+	margin-bottom: 15px;
+}
+ul.nav li {
+	border-bottom: 1px solid #666;
+}
+ul.nav a, ul.nav a:visited {
+	padding: 5px 5px 5px 15px;
+	display: block; 
+	text-decoration: none;
+	background: #8090AB;
+	color: #016;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
+	background: #6F7D94;
+	color: #FFF;
+	font-weight: bold;
+}
+
+/* ~~ The footer ~~ */
+.footer {
+	padding: 10px 0;
+	background: #6F7D94;
+	position: relative;
+	clear: both;
+	text-align: center;
+}
+.footer p a:link {
+	color:#fff;
+	font-size: 1.25em;
+	text-decoration: underline; 
+}
+.footer a:visited {
+	color: #fff;
+	text-decoration: underline;
+}
+.footer a:hover, .footer a:active, .footer a:focus { 
+    text-decoration: none;
+}
+
+.subform {
+	font-size: 1.2em;
+	color: #000;
+	border: thick solid #000;
+	border-radius: 5px;
+	background: #93A5C4;
+	margin: 2% 5%;
+	padding: 2%;
+}
+
+.subform .label {
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+	text-align: right;
+	margin-right: 10px;
+	font-weight: bold;
+	color: #016;
+}
+
+.subform input[type="submit"] {
+	margin-left: 33%;
+	padding: 10px 25px;
+	font-size: 1em;
+	color: #016;
+	background: rgb(0,102,153);
+	background: -webkit-linear-gradient(rgba(255,255,255,.1) 40%, rgba(255,255,255,.5));
+	background: -moz-linear-gradient(rgba(255,255,255,.1) 40%, rgba(255,255,255,.5));
+	background: -o-linear-gradient(rgba(255,255,255,.1) 40%, rgba(255,255,255,.5));
+	background: linear-gradient(rgba(255,255,255,.1) 40%, rgba(255,255,255,.5));
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 4px white;
+}
+
+.subform select {
+	font-size: 1.2em;
+}
+
+.subform input[type="text"], .subform textarea {
+	border-radius: 5px;
+	border: none;
+	background-color: #93A5C4;
+	color: rgba(255,255,255,.1);
+	font-size: 1.2em;
+	box-shadow: inset 0 0 10px rgba(255,255,255,.75);
+	width: 60%;
+	padding: 5px;
+}
+
+.subform input[type="text"]:focus, .subform textarea:focus {
+	background-color: rgba(255,255,255,.5);
+	color: #000;
+}

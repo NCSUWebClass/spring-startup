@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Blink by LyfeLoop</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header"><a href="#"><img src="images/lifeloop_logo.jpg" alt="LyfeLoop Logo" name="lyfeloop_logo" width="100%"id="lyfeloop_logo" /></a> 
+    <!-- end .header -->
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="capture.html">Capture</a></li>
+      <li><a href="view.html">View</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us </a></li>
+    </ul>
+    <p>
+	LyfeLoop changed my life! </br> ~Dalton Shehan</a> 
+	</br> </br> 5 Stars!!! </br> ~<a href="https://www.facebook.com/nicole.woodlief">Chris Woodlief</a>
+	</br> </br> LyfeLoop that shit is crazy! </br> ~DeShawn Brown
+	</br> </br> Zzzzzzzzzzzz!</br> ~Sleepy Little Asian
+	</p>
+    <!-- end .sidebar1 -->
+  </div>
+  <div class="content">
+    <h1>Welcome to Blink by LyfeLoop</h1>
+    <p>Welcome to the Blink website.  We hope you enjoy browsing the videos, but we really hope you <a href="capture.html">capture</a> a video of your own. If you have any comments please <a href="contact.html">contact us</a>.</p>
+    <h3>What's LyfeLoop</h3>
+    	<p>
+		LyfeLoop is a stylish wristband that measures biometrics. It measures the following biometrics.</br>
+		<ul>
+			<li>Heart Rate</li>
+			<li>Body Heat</li>
+			<li>Perspiration</li>
+		</ul>
+		</p>
+		<p>
+		Using these biometrics we can develop a  fun and useful applications for your smart phone and smart wear.
+		</p>
+	</br>
+	<h3>What's Blink</h3>
+		<p>
+		Blink is an application designed to interact with LyfeLoop to record life defining moments. 
+		</br></br>
+		Currently it is being developed to work with Google Glass, to automatically record videos.
+		</p>
+<script>
+function hasGetUserMedia() {
+  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+if (hasGetUserMedia()) {
+} else {
+  alert('getUserMedia() is not supported in your browser');
+}
+</script>
+<video autoplay></video>
+
+<script>
+  var errorCallback = function(e) {
+    console.log('Reeeejected!', e);
+  };
+
+  // Not showing vendor prefixes.
+  navigator.getUserMedia({video: true, audio: true}, function(localMediaStream) {
+    var video = document.querySelector('video');
+    video.src = window.URL.createObjectURL(localMediaStream);
+
+    // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+    // See crbug.com/110938.
+    video.onloadedmetadata = function(e) {
+      // Ready to go. Do some stuff.
+    };
+  }, errorCallback);
+</script>
+<video autoplay></video>
+<img src="">
+<canvas style="display:none;"></canvas>
+
+<script>
+  var video = document.querySelector('video');
+  var canvas = document.querySelector('canvas');
+  var ctx = canvas.getContext('2d');
+  var localMediaStream = null;
+
+  function snapshot() {
+    if (localMediaStream) {
+      ctx.drawImage(video, 0, 0);
+      // "image/webp" works in Chrome.
+      // Other browsers will fall back to image/png.
+      document.querySelector('img').src = canvas.toDataURL('image/webp');
+    }
+  }
+
+  video.addEventListener('click', snapshot, false);
+
+  // Not showing vendor prefixes or code that works cross-browser.
+  navigator.getUserMedia({video: true}, function(stream) {
+    video.src = window.URL.createObjectURL(stream);
+    localMediaStream = stream;
+  }, errorCallback);
+  </script>
+<h3></h3>
+<p></p>
+    <!-- end .content -->
+  </div>
+  <div class="footer">
+    <p>    
+      <a href="capture.html">Capture</a>
+      <a href="view.html">View</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us </a>
+    </p>
+    <p>&copy;LifeLoop· 
+    Raleigh, NC</p>
+    <!-- end .footer -->
+    </div>
+  <!-- end .container -->
+  </div>
+</body>
+</html>
