@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Blink by LyfeLoop</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.js"></script>
+  <script>
+  // GET IMG SRCS HERE
+  var img_srcs = [];
+  var img_captions = [];
+  var current_img = 0;
+  var num_imgs = 0;
+
+  var adjust_form_size = function() {
+    var width = $('#webcam').outerWidth() - 40; // 40px is padding in css
+    $('#capture-button').width(width);
+    $('#photo-form').width(width + 40);
+    $('#photo-title').width(width + 20);
+    $('#photo-description').width(width + 20);
+  };
+
+  $(document).ready(function() {
+    adjust_form_size();
+    $.ajax({
+      type: 'GET',
+      url: 'getPhotos.php',
+      success: function(data) {
+        // console.log("data " + data);
+        var items = data.split('~');
+        for(index = 0; index < items.length; ++index) {
+          var titleFileName = items[index].split('^');
+          img_srcs[index] = titleFileName[1];
+          img_captions[index] = titleFileName[0];
+        }
+        console.log("LENGTH " + img_srcs.length);
+        num_imgs = img_srcs.length;
+        show_current();
+      }
+    }).fail(function() {
+        console.log( "error" );
+    });
+      
+    // ----------------- VIEW IMAGE CODE --------------------------------
+    var show_current = function() {
+      var imgToShow = Math.abs(current_img % num_imgs);
+      $("#img-slideshow-figure").fadeTo(1000,0.30, function() {
+        // Update image shown
+        $("#img-slideshow-figure img").one("load", function() {
+          $('#img-slideshow').css("visibility","visible");
+        }).attr("src", img_srcs[imgToShow]);
+        // $("#img-slideshow-figure img").attr("src", img_srcs[imgToShow]);
+        // Update caption shown
+        $("#img-slideshow-caption").html(img_captions[imgToShow]);
+      }).fadeTo(500, 1);
+      
+    };
+
+    // Handles clicking on next and prev arrows
+    $('.next').on('click', function() {
+      console.log('next clicked');
+      current_img++;
+      show_current();
+    });
+
+    $('.prev').on('click', function() {
+      console.log('prev clicked');
+      current_img--;
+      show_current();
+      return false;
+    });
+
+    // Handles swipes on touch devices
+    if('ontouchstart' in window) {
+      $('#img-slideshow').swipe({
+        swipeLeft:function() {
+          console.log("swiped left");
+          current_img++;
+          show_current(); 
+        },
+        swipeRight:function() {
+          console.log("swiped right");
+          current_img--;
+          show_current(); 
+        }
+      });
+    }
+  });
+
+  $(window).resize(function() {
+    adjust_form_size();
+  });
+  </script>
+</head>
+
+<body>
+
+<div class="container">
+  <div id="header">
+    <img src="images/lifeloop_logo.jpg" alt="LyfeLoop Logo" name="lyfeloop_logo" width="100%" id="lyfeloop_logo" />
+    <!-- end .header -->
+  </div>
+  <div id="intro">
+    <div class="content">
+    <h1>HOW DOES LYFELOOP WORK?</h1>
+    <p>LyfeLoop is a stylish wristband that measures biometrics. It measures the following biometrics:
+    <ul class="horizontal_list" id="biometrics_list">
+      <li><img src="images/heartbeat.png" class="biometrics" /></li>
+      <li><img src="images/bodyheat.png" class="biometrics" /></li>
+      <li><img src="images/sweat.png" class="biometrics" /></li>
+    </ul> </p>
+    <p>Using these biometrics we can develop a fun and useful applications for your smart phone and smart wear.</p>
+    <h1 class="padding_above">HOW DOES BLINK WORK?</h1>
+    <p>Blink is an application designed to interact with LyfeLoop to record life defining moments. </p>
+    <p>Currently it is being developed to work with Google Glass, to automatically record videos.</p>
+    <h1 class="padding_above" id="try-it"><a href="capture.html#capture">&rarr;TRY IT OUT&larr;</a></h1>
+    </div>
+  </div>
+
+  <div id="view">
+      <div class="content">
+        <h1>PHOTOS TAKEN WITH BLINK</h1>
+        <p>These are the photos you have captured using the blink website: </p>
+
+        <div id="img-slideshow">
+          <figure id="img-slideshow-figure">
+            <img src="http://themarklee.com/wp-content/uploads/2013/12/snowying.jpg" />
+            <figcaption id="img-slideshow-caption">"Snowying" by abc.</figcaption> 
+          </figure>
+          <span class="prev">&laquo;</span>
+          <span class="next">&raquo;</span>
+        </div>  <!-- end #img-slideshow -->
+      </div> <!-- end .content -->
+    </div> <!-- end #view -->
+
+  <div id="about">
+    <div class="content">
+    <h1>WHO ARE WE?</h1>
+    <p>Lyfeloop was established by a group of North Carolina State University students and recent graduates at a StartUp Weekend. We are comprised of two electrical engineers, two business experts, and eight software engineers.</p>
+    <h1 class="padding_above">OUR MISSION</h1>
+    <p>Lyfeloop's goal is help our customers enhance their most memorable life experiences by removing the physical barrier between you and the events that define your life.</p>
+    <h1 class="padding_above">STARTUP WEEKEND</h1>
+      <div class="video-container">
+        <iframe width="480" height="360" src="//www.youtube.com/embed/kQyJvlBGA6w" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact">
+    <div class="content">
+      <ul class="horizontal_list">
+        <li><a href="http://facebook.com"><img src="images/facebook.png" class="social_icon"/></a></li>
+        <li><a href="mailto:lyfeloop@gmail.com?subject=Help with Lyfeloop"><img src="images/email.png" class="social_icon" /></a></li>
+        <li><a href="http://twitter.com"><img src="images/twitter.png" class="social_icon" /></a></li>
+        <li><a href="http://plus.google.com"><img src="images/googleplus.png" class="social_icon" /></a></li>
+      </ul>
+    <p>address: HQ Raleigh 310 S. Harrington Street Raleigh, NC 27601</p>
+    </div>
+  </div>
+  
+  <!-- end .container -->
+  </div>
+</body>
+</html>
